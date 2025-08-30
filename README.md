@@ -38,6 +38,13 @@ conda env create -f DiffSBDD -n diffsbdd
 conda activate diffsbdd
 ```
 
+5) Download model checkpoints
+
+You need one or more DiffSBDD model checkpoints (e.g., conditional and/or unconditional).
+```bash
+wget -P checkpoints/ https://zenodo.org/record/8183747/files/crossdocked_fullatom_cond.ckpt
+```
+
 3) Install app dependencies (Flask, etc.)
 ```bash
 cd
@@ -51,29 +58,12 @@ pip install -e .  # if your pyproject lists deps
 - DIFFSBDD_PYTHON: full path to the python inside the `diffsbdd` conda env
 - DIFFSBDD_CHECKPOINT: path to your DiffSBDD model checkpoint file
 
-Linux/macOS (bash):
 ```bash
+#example
 export DIFFSBDD_REPO=/home/user/DiffSBDD
 export DIFFSBDD_PYTHON=/home/user/anaconda3/envs/diffsbdd/bin/python
 export DIFFSBDD_CHECKPOINT=/home/user/DiffSBDD/checkpoints/cond.ckpt
 ```
-
-5) Download model checkpoints
-
-You need one or more DiffSBDD model checkpoints (e.g., conditional and/or unconditional).
-
-Linux/macOS:
-```bash
-chmod +x scripts/download_checkpoints.sh
-./scripts/download_checkpoints.sh /opt/DiffSBDD/checkpoints
-```
-
-Windows (PowerShell):
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\download_checkpoints.ps1 -Dest C:\tools\DiffSBDD\checkpoints
-```
-
-Then point `DIFFSBDD_CHECKPOINT` to the file you want to use (e.g., `cond.ckpt`).
 
 6) Run (development)
 
