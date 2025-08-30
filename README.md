@@ -58,10 +58,24 @@ export DIFFSBDD_PYTHON=/home/user/anaconda3/envs/diffsbdd/bin/python
 export DIFFSBDD_CHECKPOINT=/home/user/DiffSBDD/checkpoints/cond.ckpt
 ```
 
-5) Run (development)
+5) Download model checkpoints
+
+You need one or more DiffSBDD model checkpoints (e.g., conditional and/or unconditional).
+
+Linux/macOS:
 ```bash
-flask run #if you want to run it in debug mode, add [--debug]
+chmod +x scripts/download_checkpoints.sh
+./scripts/download_checkpoints.sh /opt/DiffSBDD/checkpoints
 ```
+
+Windows (PowerShell):
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\download_checkpoints.ps1 -Dest C:\tools\DiffSBDD\checkpoints
+```
+
+Then point `DIFFSBDD_CHECKPOINT` to the file you want to use (e.g., `cond.ckpt`).
+
+6) Run (development)
 
 ## Usage
 1. Pick a protein (or upload .pdb). The viewer loads the structure in NGL.
