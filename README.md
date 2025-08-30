@@ -1,6 +1,6 @@
 # ChemModeler (MoleculeAI)
 
-A lightweight web app for structure-conditioned molecular generation and 3D visualization. It integrates DiffSBDD for ligand generation, uses RDKit to convert SDF to PDB, and visualizes proteins/ligands with NGL.
+A lightweight web app for structure-conditioned molecular generation and 3D visualization.
 
 ## Highlights
 - Target selection: choose curated proteins or upload your own PDB.
