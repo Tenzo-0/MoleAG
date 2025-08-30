@@ -10,13 +10,6 @@ A lightweight web app for structure-conditioned molecular generation and 3D visu
 - Results: list generated molecules; click to visualize with the selected protein.
 - Visualization: NGL viewer with cartoon/stick/surface, quality and opacity controls.
 
-## Architecture
-- Frontend: vanilla JS + NGL (`static/js/app.js`) and Bootstrap-like styling (`static/css/style.css`).
-- Backend: Flask (`app.py`, `routes.py`).
-- DiffSBDD runner: `utils/diffsbdd.py` orchestrates `generate_ligands.py` in a separate conda env.
-- Conversion: RDKit SDF→PDB via the DiffSBDD Python env (no RDKit needed in the Flask env).
-- Storage: `uploads/` holds user PDBs and DiffSBDD job outputs.
-
 ## Requirements
 - OS: Ubuntu 20.04/22.04 recommended (Windows for local dev is OK; production on Linux preferred).
 - NVIDIA GPU with CUDA 11.8 (optional, recommended). CPU works but slower.
@@ -35,21 +28,22 @@ Use the environment.yaml from DiffSBDD (example pins):
 1) Clone
 ```bash
 # Linux/macOS
-git clone <your-repo-url> chem-modeler
-cd chem-modeler
+git clone https://github.com/arneschneuing/DiffSBDD.git
+git clone https://github.com/Tenzo-0/MoleAG.git
 ```
 
 2) Create the DiffSBDD env
 ```bash
-# Example (adjust path/file per your DiffSBDD checkout)
-conda env create -f DiffSBDD-main/environment.yaml -n diffsbdd
+cd DiffSBDD
+conda env create -f DiffSBDD -n diffsbdd
 conda activate diffsbdd
-# (Optional) install/verify torch-scatter compatible with your CUDA
 ```
 
 3) Install app dependencies (Flask, etc.)
 ```bash
 # Option A: reuse the diffsbdd env (simple)
+cd
+cd MoleAG
 pip install -U pip setuptools wheel
 pip install -e .  # if your pyproject lists deps
 # or: pip install flask
@@ -67,21 +61,11 @@ export DIFFSBDD_PYTHON=/opt/miniconda/envs/diffsbdd/bin/python
 export DIFFSBDD_CHECKPOINT=/opt/DiffSBDD/checkpoints/cond.ckpt
 ```
 
-Windows (PowerShell):
-```powershell
-$env:DIFFSBDD_REPO = "C:\\tools\\DiffSBDD"
-$env:DIFFSBDD_PYTHON = "C:\\tools\\miniconda3\\envs\\diffsbdd\\python.exe"
-$env:DIFFSBDD_CHECKPOINT = "C:\\tools\\DiffSBDD\\checkpoints\\cond.ckpt"
-```
-
 5) Run (development)
 ```bash
-# Option A
-python app.py
-# Option B
-export FLASK_APP=app.py && flask run  # Windows PowerShell: $env:FLASK_APP="app.py"; flask run
+flask run
+#if you want to run it in debug mode, add [--debug]
 ```
-The app serves static files from `static/` and templates from `templates/`.
 
 ## Usage
 1. Pick a protein (or upload .pdb). The viewer loads the structure in NGL.
