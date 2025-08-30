@@ -39,8 +39,7 @@ conda activate diffsbdd
 ```
 
 5) Download model checkpoints
-
-You need one or more DiffSBDD model checkpoints (e.g., conditional and/or unconditional).
+- You need one or more DiffSBDD model checkpoints (e.g., conditional and/or unconditional).
 ```bash
 wget -P checkpoints/ https://zenodo.org/record/8183747/files/crossdocked_fullatom_cond.ckpt
 ```
@@ -57,7 +56,6 @@ pip install -e .  # if your pyproject lists deps
 - DIFFSBDD_REPO: absolute path to DiffSBDD repo
 - DIFFSBDD_PYTHON: full path to the python inside the `diffsbdd` conda env
 - DIFFSBDD_CHECKPOINT: path to your DiffSBDD model checkpoint file
-
 ```bash
 #example
 export DIFFSBDD_REPO=/home/user/DiffSBDD
@@ -66,6 +64,9 @@ export DIFFSBDD_CHECKPOINT=/home/user/DiffSBDD/checkpoints/cond.ckpt
 ```
 
 6) Run (development)
+```bash
+flask run #if you want to run it in debug mode, add [--debug]
+```
 
 ## Usage
 1. Pick a protein (or upload .pdb). The viewer loads the structure in NGL.
