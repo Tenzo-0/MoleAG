@@ -1,4 +1,4 @@
-# ChemModeler (MoleculeAI)
+# MoleAG
 
 A lightweight web app for structure-conditioned molecular generation and 3D visualization. It integrates DiffSBDD for ligand generation, uses RDKit to convert SDF to PDB, and visualizes proteins/ligands with NGL.
 
@@ -27,7 +27,6 @@ Use the environment.yaml from DiffSBDD (example pins):
 
 1) Clone
 ```bash
-# Linux/macOS
 git clone https://github.com/arneschneuing/DiffSBDD.git
 git clone https://github.com/Tenzo-0/MoleAG.git
 ```
@@ -41,12 +40,10 @@ conda activate diffsbdd
 
 3) Install app dependencies (Flask, etc.)
 ```bash
-# Option A: reuse the diffsbdd env (simple)
 cd
 cd MoleAG
 pip install -U pip setuptools wheel
 pip install -e .  # if your pyproject lists deps
-# or: pip install flask
 ```
 
 4) Configure environment variables
@@ -56,15 +53,14 @@ pip install -e .  # if your pyproject lists deps
 
 Linux/macOS (bash):
 ```bash
-export DIFFSBDD_REPO=/opt/DiffSBDD
-export DIFFSBDD_PYTHON=/opt/miniconda/envs/diffsbdd/bin/python
-export DIFFSBDD_CHECKPOINT=/opt/DiffSBDD/checkpoints/cond.ckpt
+export DIFFSBDD_REPO=/home/user/DiffSBDD
+export DIFFSBDD_PYTHON=/home/user/anaconda3/envs/diffsbdd/bin/python
+export DIFFSBDD_CHECKPOINT=/home/user/DiffSBDD/checkpoints/cond.ckpt
 ```
 
 5) Run (development)
 ```bash
-flask run
-#if you want to run it in debug mode, add [--debug]
+flask run #if you want to run it in debug mode, add [--debug]
 ```
 
 ## Usage
